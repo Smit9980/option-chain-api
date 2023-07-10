@@ -1,6 +1,8 @@
 # NSE Option Chain API
 
-This API provides access to the NSE (National Stock Exchange) option chain data for Nifty and Bank Nifty. Additionally, you can retrieve the expiry dates for these option chains. The API supports fetching option chain data based on specific expiry dates.
+This is a Node.js application that provides access to the NSE (National Stock Exchange) option chain data for Nifty and Bank Nifty. Additionally, you can retrieve the expiry dates for these option chains. The API supports fetching option chain data based on specific expiry dates.
+
+
 
 ## Endpoints
 
