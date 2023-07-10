@@ -11,7 +11,7 @@ This API provides access to the NSE (National Stock Exchange) option chain data 
 - Parameters:
   - `symbol` (required): The symbol for which option chain data is requested (nifty or banknifty).
   - `expiry` (required): The expiry date for which option chain data is requested (format: YYYY-MM-DD).
-- Example URL: `http://localhost:8000/api/option-chain/?symbol=nifty&expiry=2023-07-15`
+- Example URL: `http://localhost:8000/api/option-chain/?symbol=nifty&expiry=13-Jul-2023`
 - Response Format: JSON
 
 ### Get Expiry Dates
