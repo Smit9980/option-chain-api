@@ -34,7 +34,7 @@ If an error occurs during the API request, the response will have a status code 
   git clone https://github.com/imsahadeb/option-chain-api.git
   cd option-chain-api
   npm Install
-  node start
+  node server.js
 ```
     
 
