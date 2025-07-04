@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 
 // Create an Axios instance with keepAlive and a longer timeout
 const httpClient = axios.create({
-  timeout: 20000,  // 20-second timeout
+  timeout: 200000,  // 20-second timeout
   httpsAgent: new https.Agent({ keepAlive: true })
 });
 
