@@ -1,41 +1,32 @@
+// routes/router.js
 import express from "express";
-import { getNSEOptionChain, getExpiryDates } from "../utils/utils.js";
-
+import { httpClient } from "../server.js"; // import shared client
 const router = express.Router();
 
+router.get("/getexpiry", async (req, res) => {
+  const symbol = (req.query.symbol || "nifty").toLowerCase();
+  try {
+    const resp = await httpClient.get(
+      `https://www.nseindia.com/api/option-chain-indices?symbol=${symbol}`
+    );
+    const expiries = resp.data.records.expiryDates;
+    res.json(expiries);
+  } catch (err) {
+    res.status(500).json({ error: err.toString() });
+  }
+});
 
-router.get('/option-chain/', async (req, res) => {
-    //symbol.toUpperCase();
-    try {
-        const symbol = req.query.symbol;
-        const expiry = req.query.expiry;
-        const data = await getNSEOptionChain(symbol.toUpperCase(), expiry);
-
-        console.log("****************************************************");
-        console.log("calling option chain:", data);
-        res.json(data);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-})
-
-
-
-
-/**
- * Example Url http://localhost:8000/api/getexpiry?symbol=nifty
- */
-router.get('/getexpiry', async (req, res) => {
-    try {
-        const symbol = req.query.symbol;
-        const data = await getExpiryDates(symbol.toUpperCase());
-        console.log("****************************************************");
-        console.log("call expiry dates:", data);
-        res.json(data);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-})
-
+router.get("/option-chain", async (req, res) => {
+  const symbol = (req.query.symbol || "nifty").toLowerCase();
+  const expiry = req.query.expiry;
+  try {
+    const resp = await httpClient.get(
+      `https://www.nseindia.com/api/option-chain-indices?symbol=${symbol}&expiryDate=${encodeURIComponent(expiry)}`
+    );
+    res.json(resp.data);
+  } catch (err) {
+    res.status(500).json({ error: err.toString() });
+  }
+});
 
 export default router;
